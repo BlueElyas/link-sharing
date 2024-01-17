@@ -88,7 +88,16 @@ import { createTheme } from "@mui/material";
                     fontSize: '12px'
                 }
             }
+        },
+        MuiContainer: {
+            styleOverrides: {
+                root: {
+                    boxSizing: 'border-box',
+                    padding: '1em'
+                }
+            }
         }
+        
     }
 })
 

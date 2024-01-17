@@ -1,9 +1,10 @@
 import { Button, Container, InputLabel, Link, Paper, Stack, TextField, Typography } from "@mui/material";
 import theme from "../theme";
+import { NavLink } from "react-router-dom";
 
 export default function Login() {
     return(
-        <Container sx={{marginTop: 3 }}>
+        <Container>
             <Stack gap={4}>
                 <Stack>
                     <Typography variant="h5" fontWeight='bold' mb={1}>Login</Typography>
@@ -33,11 +34,12 @@ export default function Login() {
                         />
                     </Stack>
                     <Button>Login</Button>
-                    <Stack>
+                    <Stack direction='row' alignItems='baseline' justifyContent='space-between'>
                         <Typography variant="caption" color={theme.palette.text.secondary}>Don't have an account?</Typography>
-                        <Link>Create account</Link>
-                    </Stack>
-                    
+                        <NavLink to='/create-account' style={{textDecoration: 'none'}}>
+                            <Link>Create account</Link>
+                        </NavLink>
+                    </Stack>                
                 </Paper>
             </Stack>
         </Container>

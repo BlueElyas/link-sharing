@@ -3,7 +3,7 @@ import SmallLogo from '../../assets/images/logo-devlinks-small.svg'
 
 export default function Header() {
     return(
-        <Container sx={{marginTop: 4}}>
+        <Container>
             <Stack direction='row' alignItems='center' gap='5px'>
                 <Box
                     component='img'
