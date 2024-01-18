@@ -47,7 +47,7 @@ export default function CreateActtount() {
                     <Stack alignItems='center' justifyContent='center'>
                         <Typography variant="caption" color={theme.palette.text.secondary}>Already have an account?</Typography>
                         <NavLink to='/' style={{textDecoration: 'none'}}>
-                            <Link>Create account</Link>
+                            <Link>Login</Link>
                         </NavLink>
                     </Stack>                
                 </Paper>
