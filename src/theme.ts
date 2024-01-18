@@ -46,6 +46,7 @@ import { createTheme } from "@mui/material";
             styleOverrides: {
                 root: {
                     boxShadow: 'none',
+                    backgroundColor: 'inherit'
                 }
             }
         },
@@ -73,11 +74,17 @@ import { createTheme } from "@mui/material";
                     backgroundColor: '#633CFF',
                     textTransform: 'none',
                     borderRadius: '8px',
+                    minWidth: '40px',
                     ':hover' : {
                         boxShadow: '0px 0px 32px 0px rgba(99, 60, 255, 0.25)',
                         backgroundColor: '#BEADFF'
                     }
-                }
+                },
+                outlined: {
+                    backgroundColor: '#fff',
+                    border: '1px solid #633CFF',
+                    padding: '5px 0px',
+                },
             }
         },
         MuiLink: {
@@ -85,7 +92,7 @@ import { createTheme } from "@mui/material";
                 root: {
                     textDecoration: 'none',
                     color: '#633CFF',
-                    fontSize: '12px'
+                    fontSize: '12px',
                 }
             }
         },
@@ -96,7 +103,16 @@ import { createTheme } from "@mui/material";
                     padding: '1em'
                 }
             }
-        }
+        },
+        MuiAppBar: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: '#fff',
+                    padding: '8px 16px',
+                    position: "sticky"
+                }
+            }
+        },
         
     }
 })
