@@ -84,6 +84,10 @@ import { createTheme } from "@mui/material";
                     backgroundColor: '#fff',
                     border: '1px solid #633CFF',
                     padding: '5px 0px',
+                    color: '#633CFF',
+                    ':hover' : {
+                        border: '1px solid #633CFF'
+                    }
                 },
             }
         },
