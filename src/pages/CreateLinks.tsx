@@ -1,15 +1,14 @@
 import { Button, Container, Stack, Typography } from "@mui/material";
 import theme from "../theme";
 import { ReactComponent as StartedIcon } from '../assets/images/illustration-empty.svg'
-import { useState } from "react";
 import AddedLink from "../components/CreateLinks/AddedLink";
+import { useLinkContext } from "../context/LinkContext";
+import SavedLink from "../components/CreateLinks/SavedLink";
+
 
 export default function CreateLinks() {
-    const [newLink, setNewLink] = useState(false)
+    const { newLink, addNewLink, saveLink, linkList } = useLinkContext()
 
-    const handleNewLink = () => {
-        setNewLink(true)
-    }
 
     return(
         <Container sx={{backgroundColor: '#fff', paddingY: 2, borderRadius: '20px', height: '100vh'}}>
@@ -22,10 +21,27 @@ export default function CreateLinks() {
                         Add/edit/remove links below and then share all your profiles with the world!
                     </Typography>
                 </Stack>
-                <Button variant="outlined" sx={{marginBottom: 2}} component='button' onClick={() => handleNewLink()}>+ Add new link</Button>
+                <Button 
+                    variant="outlined" 
+                    sx={{marginBottom: 2}} 
+                    component='button' 
+                    onClick={addNewLink}
+                    disabled={newLink}
+                >
+                    + Add new link
+                </Button>
                 {
-                    newLink ? <AddedLink/> 
-                    : 
+                     newLink && <AddedLink />
+                }
+                {
+                    newLink || linkList.length > 0 
+                    ?
+                    linkList.map(item => {
+                        return(
+                            <SavedLink linkValues={item} />
+                        )
+                    })
+                    :
                     <Stack sx={{backgroundColor: '#FAFAFA', paddingY: 2, borderRadius: '20px', textAlign: 'center'}} gap={2} mb={3}>
                         <StartedIcon/>
                         <Typography variant="h5" fontWeight='bold'>Let's get you started</Typography>
@@ -36,7 +52,7 @@ export default function CreateLinks() {
                     </Stack>
                 }
                 <Stack position='relative' bottom={0}>
-                    <Button sx={{justifySelf:'end'}}>Save</Button>
+                    <Button sx={{justifySelf:'end'}} disabled={!newLink} onClick={saveLink}>Save</Button>
                 </Stack>
             </Stack>
         </Container>
