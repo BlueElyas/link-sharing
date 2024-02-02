@@ -16,6 +16,7 @@ type LinkContextValues = {
     addNewLink: () => void
     newLink: boolean
     linkList:  linkProperties[]
+    removeLink: (id: number) => void
 }
 
 const LinkContext = createContext({} as LinkContextValues)
@@ -49,11 +50,15 @@ export default function LinkProvider ( { children } : LinkProviderProps ) {
         setNewLink(p => !p)
     }
 
+    const removeLink = (id : number) => {
+        setLinkList(prevLinkList => prevLinkList.filter((item) => id !== item.id ))
+    }
+
     console.log(linkList)
 
     return(
-        <LinkContext.Provider value={ { saveLink, setLinkItems, addNewLink, newLink, linkList } }>
-        {children}
+        <LinkContext.Provider value={ { saveLink, setLinkItems, addNewLink, newLink, linkList, removeLink } }>
+            {children}
         </LinkContext.Provider>
     )
 }
