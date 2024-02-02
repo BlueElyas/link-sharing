@@ -38,7 +38,9 @@ export default function CreateLinks() {
                     ?
                     linkList.map(item => {
                         return(
-                            <SavedLink linkValues={item} />
+                            <div key={item.id}>
+                                <SavedLink linkValues={item} />
+                            </div>
                         )
                     })
                     :
