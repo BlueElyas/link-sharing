@@ -17,7 +17,7 @@ export default function CreateActtount() {
     const { createAccount, isAuthenticated, setIsAuthenticated } = useAuthContext()
 
     useEffect(() => {
-        if(password.trim().length < 8 && verifiedPassword.trim().length < 8 && userName.trim()) {
+        if(password.trim().length >= 8 && verifiedPassword.trim().length >= 8 && userName.trim()) {
             if (password === verifiedPassword) {
                 setUserData({userName: userName, password: password})
                 return setIsAuthenticated(true)
