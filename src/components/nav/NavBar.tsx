@@ -18,7 +18,7 @@ export default function NavBar() {
                     src={SmallLogo}
                 />
                 <Stack direction='row'> 
-                    <NavLink to='/create-links' 
+                    <NavLink to='/' 
                         style={({isActive} ) => {
                             return {
                                 padding: '9px 27px',
