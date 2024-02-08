@@ -15,16 +15,15 @@ export default function Login() {
                     </Stack>
                     <Paper component='form' sx={{display:"flex", flexDirection: 'column', gap:3}}>
                         <Stack>
-                            <InputLabel htmlFor='email-input'>Email address</InputLabel>
+                            <InputLabel htmlFor='userName-input'>Username</InputLabel>
                             <TextField 
-                                placeholder='e.g. alex@email.com'
-                                id="email-input"
+                                placeholder='e.g. alexf14'
+                                id="userName-input"
                                 sx={{'input::placeholder': {
                                     opacity: '0.6',
                                     color: '#333333',
                                     backgroundColor: 'none'
                                 }}}
-                                type="email"
                             />
                         </Stack>
                         <Stack>
