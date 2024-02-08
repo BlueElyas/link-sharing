@@ -8,6 +8,7 @@ type AuthContextProps = {
     createAccount: (userData: any) => void
     isAuthenticated: boolean
     setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>
+    login: (userData: any) => void
 }
 
 const AuthContext = createContext({} as AuthContextProps)
@@ -18,25 +19,28 @@ export const AuthProvider = ({ children }: AuthProviderProps)  => {
 
     const navigate = useNavigate()
 
-    // const login = (userData: SetStateAction<any>) => {
-    //     const stored = localStorage.getItem('user')
-    //     const name = userData.name
-    //     const password = userData.password
-    //     if(!stored) return
-    //     if(stored.name === name && stored.password === password) {
-
-    //     } 
-    //     }
+    const login  = (userData: any) => {
+        const localItems: string | null = localStorage.getItem('user')
+        if (localItems === null) {
+            return
+        }
+        const parsedLocalItems = JSON.parse(localItems)
+        if(parsedLocalItems.userName = userData.username && parsedLocalItems.password === userData.password) {
+            setUser(userData)
+            setIsAuthenticated(true)
+            navigate('/')
+        }
+        console.log(isAuthenticated)
+    }
 
     const createAccount = (userData : any) => {
         setUser(userData)
         localStorage.setItem('user', JSON.stringify(userData))
         navigate('/')
     }
-    
 
     return (
-        <AuthContext.Provider value={{createAccount, isAuthenticated, setIsAuthenticated}}>
+        <AuthContext.Provider value={{createAccount, isAuthenticated, setIsAuthenticated, login}}>
             {children}
         </AuthContext.Provider>
     )
