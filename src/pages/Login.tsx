@@ -2,8 +2,27 @@ import { Button, Container, InputLabel, Link, Paper, Stack, TextField, Typograph
 import theme from "../theme";
 import { NavLink } from "react-router-dom";
 import Header from "../components/main/Header";
+import { useEffect, useState } from "react";
+import { useAuthContext } from "../context/AuthContext";
 
 export default function Login() {
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [userData, setUserData] = useState({
+        username: '',
+        password: ''
+    })
+    const [inputValidated, setInputValidated] = useState(false)
+
+    const {  login } = useAuthContext()
+
+    useEffect(() => {
+        if(password.trim().length > 8 && username.trim()) {
+            setUserData({username: username, password: password})
+            setInputValidated(true)
+        }
+    },[username, password])
+
     return(
         <Container>
             <Header/>
@@ -24,6 +43,8 @@ export default function Login() {
                                     color: '#333333',
                                     backgroundColor: 'none'
                                 }}}
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
                             />
                         </Stack>
                         <Stack>
@@ -33,9 +54,11 @@ export default function Login() {
                                 id="password-input"
                                 InputLabelProps={{sx:{backgroundColor:'tranparent'}}}
                                 type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                         </Stack>
-                        <Button>Login</Button>
+                        <Button onClick={() => login(userData)} disabled={!inputValidated}>Login</Button>
                         <Stack direction='row' alignItems='baseline' justifyContent='space-between'>
                             <Typography variant="caption" color={theme.palette.text.secondary}>Don't have an account?</Typography>
                             <NavLink to='/create-account' style={{textDecoration: 'none'}}>
